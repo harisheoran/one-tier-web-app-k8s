@@ -1,0 +1,37 @@
+# Default values for 1-tier-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+Namespace: motd-ns
+
+replicaCount: 3
+
+deploy:
+  label:
+    key: deploy
+    value: motd-deployment
+
+pod:
+  label:
+    key: webapp
+    value: motd-app
+
+container:
+  name: motd-container
+  image:
+    repository: harisheoran/memesoftheday-image:main
+  port: 3000
+
+service:
+  name: motd-svc
+  label:
+    key: svc
+    value: motd-svc
+  type: NodePort
+  port: 3000
+  targetPort: 3000
+  nodePort: 30007
+
+ingress:
+  className: alb
+  path: /

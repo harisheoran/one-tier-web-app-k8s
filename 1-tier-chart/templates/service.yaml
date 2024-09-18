@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service.name }}
+  namespace: {{ .Values.Namespace }}
+  labels:
+    {{ .Values.label.key }}: {{ .Values.label.value }}
+spec:
+  type: {{ .Values.type }}
+  selector:
+    {{ .Values.pod.label.key }}: {{ .Values.pod.label.value }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      nodePort: {{ .Values.service.nodePort }}

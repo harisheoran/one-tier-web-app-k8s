@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: motd-deployment
+  namespace: {{ .Values.Namespace }}
+  labels:
+    {{ .Values.deploy.label.key }}: {{ .Values.deploy.label.value }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{ .Values.pod.label.key }}: {{ .Values.pod.label.value }} 
+  template:
+    metadata:
+      labels:
+        {{ .Values.pod.label.key }}: {{ .Values.pod.label.value }}
+    spec:
+      containers:
+        - name: {{ .Values.container.name }}
+          image: {{ .Values.container.image.repository }}
+          ports:
+          - containerPort: {{ .Values.container.port }}
