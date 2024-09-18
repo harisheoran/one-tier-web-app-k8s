@@ -4,9 +4,9 @@ metadata:
   name: {{ .Values.service.name }}
   namespace: {{ .Values.Namespace }}
   labels:
-    {{ .Values.label.key }}: {{ .Values.label.value }}
+    {{ .Values.service.label.key }}: {{ .Values.service.label.value }}
 spec:
-  type: {{ .Values.type }}
+  type: {{ .Values.service.type }}
   selector:
     {{ .Values.pod.label.key }}: {{ .Values.pod.label.value }}
   ports:
